@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mzkadmin/Defaults/UsedColors.dart';
 
 class SurveysPage extends StatefulWidget {
   @override
@@ -9,7 +10,7 @@ class _SurveysPageState extends State<SurveysPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.amber,
+      color: Renk_EggYellow,
       child: Center(
         child: Text(
           "Anketler Bölümü Yapım Aşamasında",

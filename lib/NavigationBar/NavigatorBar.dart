@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:mzkadmin/Defaults/UsedColors.dart';
 import 'package:mzkadmin/NavigationBar/src/MzkName.dart';
 import 'package:mzkadmin/NavigationBar/src/NavBar.dart';
 
@@ -14,7 +15,7 @@ class _NavigationBarState extends State<NavigationBar> {
     return Container(
       height: MediaQuery.of(context).size.height,
       width: 100,
-      color: Color(0xff333951),
+      color: Renk_DarkGrey,
       child: Stack(
         children: [
           Align(

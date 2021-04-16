@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mzkadmin/Defaults/UsedColors.dart';
 
 class NewsPage extends StatefulWidget {
   @override
@@ -22,7 +24,7 @@ class _NewsPageState extends State<NewsPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: Renk_EggYellow,
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -30,36 +32,41 @@ class _NewsPageState extends State<NewsPage> {
             children: [
               Row(
                 children: [
-                  SizedBox(width: 5),
-                  Flexible(flex: 2, child: Container(
-                        color: Colors.white12,
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height,
-                        padding: EdgeInsets.all(10),
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: 25,
-                          itemBuilder: (context,int i){
-                            return ListTile(
-                              onTap: (){},
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                              title: Text("$i. Haber Gönderisi Başlığı ",style: TextStyle(fontWeight: FontWeight.bold),),
-                              subtitle: Text(" Haber Açıklaması "),
-                              trailing: FaIcon(FontAwesomeIcons.edit,size: 20,color: Color(0xff333951),),
-                            );
-                          },
-                        ),
-                      ),),// Haber Gönderileri Listesi
-                  SizedBox(width: 5,),
-                  Flexible(flex: 4, child: Container(
-                      color: Colors.amber,
+                  Flexible(flex:2,child: SingleChildScrollView(
+                    child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      padding: EdgeInsets.all(10),
+                      child: ListView.builder(
+                        padding: EdgeInsets.all(5),
+                        scrollDirection: Axis.vertical,
+                        itemCount: 25,
+                        itemBuilder: (context,int i){
+                          return ListTile(
+                            onTap: (){},
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            title: Text("$i. Youtube Gönderisi Başlığı ",style: TextStyle(fontWeight: FontWeight.bold),),
+                            subtitle: Text(" İçerik Açıklaması "),
+                            trailing: IconButton(
+                              icon: FaIcon(FontAwesomeIcons.edit),
+                              iconSize: 20,
+                              color: Renk_Blackish,
+                              hoverColor: Colors.white54,
+                              onPressed: (){},
+                            ),
+                            hoverColor: Colors.white30,
+                            //trailing: FaIcon(FontAwesomeIcons.edit,size: 20,color: ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),),// Haber Gönderileri Listesi
+                  Container(width: 5,height: MediaQuery.of(context).size.height,color: Renk_Blackish,),
+                  Flexible(flex: 4, child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
                       child: Column(
                         children: [
                           Flexible(flex: 1,child: Container(
-                            color: Colors.white12,
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height,
                             child: SingleChildScrollView(
@@ -67,11 +74,11 @@ class _NewsPageState extends State<NewsPage> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(10),
                                     child: Text(
                                       "Haber Görüntüleme",
-                                      style: TextStyle(color: Color(0xff333951),fontSize: 20,fontWeight: FontWeight.bold),
+                                      style: TextStyle(color: Renk_Blackish,fontSize: 30,fontWeight: FontWeight.bold),
                                     ),
+                                    padding: EdgeInsets.all(10),
                                   ),//
                                   Padding(
                                     padding: EdgeInsets.all(10),
@@ -101,9 +108,8 @@ class _NewsPageState extends State<NewsPage> {
                               ),
                             ),
                           )),//Haberi Görüntüleme
-                          SizedBox(height: 10,),
+                          Container(height: 5,width: MediaQuery.of(context).size.width,color: Renk_Blackish,),
                           Flexible(flex: 1,child: Container(
-                            color: Colors.white12,
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height,
                             child: SingleChildScrollView(
@@ -111,11 +117,11 @@ class _NewsPageState extends State<NewsPage> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(10),
                                     child: Text(
                                       "Habere Ait Yorumlar",
-                                      style: TextStyle(color: Color(0xff333951),fontSize: 18,fontWeight: FontWeight.bold),
+                                      style: TextStyle(color: Renk_Blackish,fontSize: 30,fontWeight: FontWeight.bold),
                                     ),
+                                    padding: EdgeInsets.all(10),
                                   ),
                                 ],
                               ),
@@ -124,9 +130,8 @@ class _NewsPageState extends State<NewsPage> {
                         ],
                       ),
                     ),),//Haber İçeriği ve Yorumları Görüntüleme
-                  SizedBox(width: 5),
+                  Container(width: 5,height: MediaQuery.of(context).size.height,color: Renk_Blackish,),
                   Flexible(flex: 4,child: Container(
-                    color: Colors.amber,
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     child: Column(
@@ -134,18 +139,18 @@ class _NewsPageState extends State<NewsPage> {
                         Flexible(flex:  1,child: Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,
-                          color: Colors.white12,
+                          color: Renk_EggYellow,
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(10),
                                   child: Text(
                                     "Haber Gönderisi Oluştur",
-                                    style: TextStyle(color: Color(0xff333951),fontSize: 18,fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: Renk_Blackish,fontSize: 30,fontWeight: FontWeight.bold),
                                   ),
-                                ),
+                                  padding: EdgeInsets.all(10),
+                                ),//Oluştur Başlığı
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
                                   child: TextField(
@@ -157,16 +162,16 @@ class _NewsPageState extends State<NewsPage> {
                                       labelText: "Haber Başlığı : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 10,),
+                                ),//Haber Başlığı
+                                SizedBox(height: 5,),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
                                   child: TextField(
@@ -179,16 +184,16 @@ class _NewsPageState extends State<NewsPage> {
                                       labelText: "Haber İçeriği : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 10,),
+                                ),//Haber içeriği
+                                SizedBox(height: 5,),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
                                   child: TextField(
@@ -200,50 +205,49 @@ class _NewsPageState extends State<NewsPage> {
                                       labelText: "Haber Görsel Linki : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
                                       ),
                                     ),
                                   ),
-                                ),
+                                ),//Haber Görsel Linki
                                 Padding(padding: EdgeInsets.all(20),
-                                child: OutlineButton.icon(
-                                    onPressed: (){},
-                                    icon: FaIcon(FontAwesomeIcons.paperPlane,size: 20,),
-                                    label: Text("Haberi Paylaş"),
-                                  textColor: Colors.black,
-                                  color: Colors.amber,
-                                  hoverColor: Colors.amber.shade400,
+                                child: FlatButton.icon(
+                                  onPressed: (){},
+                                  icon: FaIcon(FontAwesomeIcons.paperPlane,size: 20,),
+                                  label: Text(" Haberi Paylaş "),
+                                  color: Renk_Blackish,
+                                  hoverColor: Colors.white12,
+                                  textColor: Renk_EggYellow,
+                                  padding: EdgeInsets.all(15),
                                   shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5),
-                                      side: BorderSide(color: Colors.black)
+                                    borderRadius: BorderRadius.circular(5),
+                                    side: BorderSide(color: Renk_Blackish),
                                   ),
-                                  borderSide: BorderSide(color: Colors.black),
                                 ),
                                 )
                               ],
                             ),
                           ),
-                        )),//Gönderi Oluşturma
-                        SizedBox(height: 10,),
+                        )), //Gönderi Oluşturma
+                        Container(height: 5,width: MediaQuery.of(context).size.width,color: Renk_Blackish,),
                         Flexible(flex:  1,child: Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,
-                          color: Colors.white12,
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(10),
                                   child: Text(
                                     "Haber Gönderisini Düzenle",
-                                    style: TextStyle(color: Color(0xff333951),fontSize: 18,fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: Renk_Blackish,fontSize: 30,fontWeight: FontWeight.bold),
                                   ),
-                                ),
+                                  padding: EdgeInsets.all(10),
+                                ),//Düzenle Başlığı
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
                                   child: TextField(
@@ -255,16 +259,16 @@ class _NewsPageState extends State<NewsPage> {
                                       labelText: "Haber Başlığı : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 10,),
+                                ),//Haber Başlığı
+                                SizedBox(height: 5,),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
                                   child: TextField(
@@ -277,16 +281,16 @@ class _NewsPageState extends State<NewsPage> {
                                       labelText: "Haber İçeriği : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
                                       ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(height: 10,),
+                                ),//Haber içeriği
+                                SizedBox(height: 5,),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
                                   child: TextField(
@@ -298,48 +302,48 @@ class _NewsPageState extends State<NewsPage> {
                                       labelText: "Haber Görsel Linki : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
                                       ),
                                     ),
                                   ),
-                                ),
+                                ),//Haber Göreslinin Linki
                                 Padding(padding: EdgeInsets.all(20),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      OutlineButton.icon(
+                                      FlatButton.icon(
                                         onPressed: (){},
                                         icon: FaIcon(FontAwesomeIcons.save,size: 20,),
-                                        label: Text("Haberi Düzenle ve Kaydet"),
-                                        textColor: Colors.black,
-                                        color: Colors.amber,
-                                        hoverColor: Colors.amber.shade400,
+                                        label: Text(" Haberi Düzenle ve Kaydet "),
+                                        color: Renk_Blackish,
+                                        hoverColor: Colors.white12,
+                                        textColor: Renk_EggYellow,
+                                        padding: EdgeInsets.all(15),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5),
-                                            side: BorderSide(color: Colors.black)
+                                          borderRadius: BorderRadius.circular(5),
+                                          side: BorderSide(color: Renk_Blackish),
                                         ),
-                                        borderSide: BorderSide(color: Colors.black),
                                       ),
-                                      OutlineButton.icon(
+                                      FlatButton.icon(
                                         onPressed: (){},
                                         icon: FaIcon(FontAwesomeIcons.trashAlt,size: 20,),
-                                        label: Text("Haberi Kaldır"),
-                                        textColor: Colors.black,
-                                        color: Colors.amber,
-                                        hoverColor: Colors.amber.shade400,
+                                        label: Text(" Haberi Kaldır "),
+                                        color: Renk_Blackish,
+                                        hoverColor: Colors.white12,
+                                        textColor: Renk_EggYellow,
+                                        padding: EdgeInsets.all(15),
                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(5),
-                                            side: BorderSide(color: Colors.black)
+                                          borderRadius: BorderRadius.circular(5),
+                                          side: BorderSide(color: Renk_Blackish),
                                         ),
-                                        borderSide: BorderSide(color: Colors.black),
-                                      ),
+                                      ),//Sil Butonu
                                     ],
-                                  )
-                                )
+                                  ),
+                                ),//Kaydet ve Sil Butonu
                               ],
                             ),
                           ),
@@ -347,7 +351,6 @@ class _NewsPageState extends State<NewsPage> {
                       ],
                     ),
                   ),), //Düzenle Ve Oluştur Bölümleri
-                  SizedBox(width: 5,),
                 ],
               ),
             ],

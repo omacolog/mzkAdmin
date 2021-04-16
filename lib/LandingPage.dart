@@ -8,6 +8,7 @@ import 'package:mzkadmin/Dashboard/NewsPage.dart';
 import 'package:mzkadmin/Dashboard/SettingsPage.dart';
 import 'package:mzkadmin/Dashboard/SurveysPage.dart';
 import 'package:mzkadmin/Dashboard/YoutubePage.dart';
+import 'package:mzkadmin/Defaults/UsedColors.dart';
 
 class LandingPage extends StatefulWidget {
   final String page;
@@ -30,7 +31,7 @@ class _LandingPageState extends State<LandingPage> {
           children: [
             Container(
               width: 100,
-              color: Color(0xff333951),
+              color: Renk_Blackish,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: icons.map((e) {
@@ -91,10 +92,10 @@ class _NavItemState extends State<NavItem> {
                   duration: Duration(milliseconds: 475),
                   width: double.infinity,
                   height: 60,
-                  color: widget.selected ? Colors.black87 : Color(0xff333951),
+                  color: widget.selected ? Renk_EggYellow : Renk_Blackish,
                   child: Icon(
                       widget.icon,
-                      color: widget.selected ? Colors.white : Colors.amber,
+                      color: widget.selected ? Renk_Blackish : Renk_EggYellow,
                       size: 25,
                     ),
                   ),

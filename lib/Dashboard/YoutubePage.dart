@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mzkadmin/Defaults/UsedColors.dart';
 
 class YoutubePage extends StatefulWidget {
   @override
@@ -28,7 +29,7 @@ class _YoutubePageState extends State<YoutubePage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber,
+      backgroundColor: Renk_EggYellow,
       body: SingleChildScrollView(
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -37,13 +38,12 @@ class _YoutubePageState extends State<YoutubePage> {
             children: [
               Row(
                 children: [
-                  SizedBox(width: 5,),
                   Flexible(flex:2,child: SingleChildScrollView(
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      color: Colors.white12,
                       child: ListView.builder(
+                        padding: EdgeInsets.all(5),
                         scrollDirection: Axis.vertical,
                         itemCount: 25,
                         itemBuilder: (context,int i){
@@ -55,30 +55,29 @@ class _YoutubePageState extends State<YoutubePage> {
                             trailing: IconButton(
                               icon: FaIcon(FontAwesomeIcons.edit),
                               iconSize: 20,
-                              color: Color(0xff333951),
-                              onPressed: (){},
+                              color: Renk_Blackish,
                               hoverColor: Colors.white54,
-                              mouseCursor: MouseCursor.uncontrolled,
+                              onPressed: (){},
                             ),
+                            hoverColor: Colors.white30,
                             //trailing: FaIcon(FontAwesomeIcons.edit,size: 20,color: ),
                           );
                         },
                       ),
                     ),
                   ),),//Gönderi Listesi
-                  SizedBox(width: 5,),
-                  Flexible(flex:3,child: SingleChildScrollView(
+                  Container(color: Renk_Blackish,width: 5,height: MediaQuery.of(context).size.height,),
+                  Flexible(flex:4,child: SingleChildScrollView(
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      color: Colors.white12,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Padding(
                             child: Text(
                               "Gönderi Görüntüleme",
-                              style: TextStyle(color: Color(0xff333951),fontSize: 20,fontWeight: FontWeight.bold),
+                              style: TextStyle(color: Renk_Blackish,fontSize: 30,fontWeight: FontWeight.bold),
                             ),
                             padding: EdgeInsets.all(10),
                           ),//Container Başlığı
@@ -125,9 +124,8 @@ class _YoutubePageState extends State<YoutubePage> {
                       ),
                     ),
                   )),//Gönderi Görüntüleme
-                  SizedBox(width: 5,),
+                  Container(color: Renk_Blackish,width: 5,height: MediaQuery.of(context).size.height,),
                   Flexible(flex: 4,child: Container(
-                    color: Colors.amber,
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     child: Column(
@@ -135,17 +133,16 @@ class _YoutubePageState extends State<YoutubePage> {
                         Flexible(flex:  1,child: Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,
-                          color: Colors.white12,
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(10),
                                   child: Text(
                                     "Youtube Gönderisi Oluştur",
-                                    style: TextStyle(color: Color(0xff333951),fontSize: 18,fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: Renk_Blackish,fontSize: 30,fontWeight: FontWeight.bold),
                                   ),
+                                  padding: EdgeInsets.all(10),
                                 ),//GÖnderi Oluştur Başlığı
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
@@ -158,8 +155,8 @@ class _YoutubePageState extends State<YoutubePage> {
                                       labelText: "Video ID : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
@@ -179,8 +176,8 @@ class _YoutubePageState extends State<YoutubePage> {
                                       labelText: "Video Başlığı : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
@@ -201,8 +198,8 @@ class _YoutubePageState extends State<YoutubePage> {
                                       labelText: "Video Açıklaması : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
@@ -222,8 +219,8 @@ class _YoutubePageState extends State<YoutubePage> {
                                       labelText: "Video Fotoğraf Linki : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
@@ -232,39 +229,39 @@ class _YoutubePageState extends State<YoutubePage> {
                                   ),
                                 ),//Fotoğraf Linki
                                 Padding(padding: EdgeInsets.all(20),
-                                  child: OutlineButton.icon(
+                                  child: FlatButton.icon(
                                     onPressed: (){},
                                     icon: FaIcon(FontAwesomeIcons.paperPlane,size: 20,),
-                                    label: Text("Gönderi Paylaş"),
-                                    textColor: Colors.black,
-                                    color: Colors.amber,
-                                    hoverColor: Colors.amber.shade400,
+                                    label: Text(" Gönderiyi Paylaş "),
+                                    color: Renk_Blackish,
+                                    hoverColor: Colors.white12,
+                                    textColor: Renk_EggYellow,
+                                    padding: EdgeInsets.all(15),
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5),
-                                        side: BorderSide(color: Colors.black)
+                                      borderRadius: BorderRadius.circular(5),
+                                      side: BorderSide(color: Renk_Blackish),
                                     ),
-                                    borderSide: BorderSide(color: Colors.black),
                                   ),
                                 )//Gönderi Paylaş Butonu
                               ],
                             ),
                           ),
                         )),//Gönderi Oluşturma
-                        SizedBox(height: 10,),
+                        Container(height: 5,width: MediaQuery.of(context).size.width,color: Renk_Blackish,),
                         Flexible(flex:  1,child: Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height,
-                          color: Colors.white12,
+                          color: Renk_EggYellow,
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(10),
                                   child: Text(
                                     "Youtube Gönderisini Düzenle",
-                                    style: TextStyle(color: Color(0xff333951),fontSize: 18,fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: Renk_Blackish,fontSize: 30,fontWeight: FontWeight.bold),
                                   ),
+                                  padding: EdgeInsets.all(10),
                                 ),//Düzenleme başlığı
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
@@ -277,8 +274,8 @@ class _YoutubePageState extends State<YoutubePage> {
                                       labelText: "Video ID : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
@@ -298,8 +295,8 @@ class _YoutubePageState extends State<YoutubePage> {
                                       labelText: "Haber İçeriği : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
@@ -320,8 +317,8 @@ class _YoutubePageState extends State<YoutubePage> {
                                       labelText: "Video Açıklaması : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
@@ -341,8 +338,8 @@ class _YoutubePageState extends State<YoutubePage> {
                                       labelText: "Video Fotoğraf Linki : ",
                                       labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 18),
                                       filled: true,
-                                      fillColor: Colors.amber,
-                                      hoverColor: Colors.amber.shade400,
+                                      fillColor: Colors.white12,
+                                      hoverColor: Colors.white30,
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5),
                                         borderSide: BorderSide(color: Colors.black),
@@ -354,31 +351,31 @@ class _YoutubePageState extends State<YoutubePage> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        OutlineButton.icon(
+                                        FlatButton.icon(
                                           onPressed: (){},
                                           icon: FaIcon(FontAwesomeIcons.save,size: 20,),
-                                          label: Text("Haberi Düzenle ve Kaydet"),
-                                          textColor: Colors.black,
-                                          color: Colors.amber,
-                                          hoverColor: Colors.amber.shade400,
+                                          label: Text(" Gönderiyi Düzenle ve Kaydet  "),
+                                          color: Renk_Blackish,
+                                          hoverColor: Colors.white12,
+                                          textColor: Renk_EggYellow,
+                                          padding: EdgeInsets.all(15),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5),
-                                              side: BorderSide(color: Colors.black)
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(color: Renk_Blackish),
                                           ),
-                                          borderSide: BorderSide(color: Colors.black),
-                                        ),
-                                        OutlineButton.icon(
+                                        ),//Haberi Düzenle Butonu
+                                        FlatButton.icon(
                                           onPressed: (){},
                                           icon: FaIcon(FontAwesomeIcons.trashAlt,size: 20,),
-                                          label: Text("Haberi Kaldır"),
-                                          textColor: Colors.black,
-                                          color: Colors.amber,
-                                          hoverColor: Colors.amber.shade400,
+                                          label: Text(" Gönderiyi Kaldır "),
+                                          color: Renk_Blackish,
+                                          hoverColor: Colors.white12,
+                                          textColor: Renk_EggYellow,
+                                          padding: EdgeInsets.all(15),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5),
-                                              side: BorderSide(color: Colors.black)
+                                            borderRadius: BorderRadius.circular(5),
+                                            side: BorderSide(color: Renk_Blackish),
                                           ),
-                                          borderSide: BorderSide(color: Colors.black),
                                         ),
                                       ],
                                     )
@@ -390,7 +387,6 @@ class _YoutubePageState extends State<YoutubePage> {
                       ],
                     ),
                   ),),//Gönderi Oluştur ve Gönderi Düzenle
-                  SizedBox(width: 5,),
                 ],
               )
             ],
@@ -398,162 +394,5 @@ class _YoutubePageState extends State<YoutubePage> {
         ),
       ),
     );
-    /*body: Column(
-          children: [
-            Padding(padding: EdgeInsets.all(20)),
-            Row(children: [SizedBox(width: 50,),Text("YOUTUBE GÖNDERİLERİ",
-              style: TextStyle(color: Color(0xff333951),fontSize: 40,fontWeight: FontWeight.bold),)],),
-            Padding(padding: EdgeInsets.all(20)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(width: 50),
-                FlatButton.icon(
-                  onPressed: (){},
-                  icon: FaIcon(FontAwesomeIcons.folderPlus),
-                  label: Text(" Yeni Bir Youtube Gönderisi Oluştur ",style: TextStyle(
-                    fontWeight: FontWeight.w400,fontSize: 18,
-                  ),),
-                  color: Color(0xff333951),
-                  textColor: Colors.amber,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ],
-            ),//Gönderi Oluştur Düğmesi
-            Padding(padding: EdgeInsets.all(20)),
-            Row(
-              children: [
-                SizedBox(width: 50,),
-                Container(
-                  color: Colors.white12,
-                  width: MediaQuery.of(context).size.width*0.20,
-                  height: MediaQuery.of(context).size.height*0.53,
-                  //margin: EdgeInsets.symmetric(vertical: 20),
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: 10,
-                    itemBuilder: (context,int i){
-                      return ListTile(
-                        onTap: (){},
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                        title: Text("$i. Gönderi Başlığı ",style: TextStyle(fontWeight: FontWeight.bold),),
-                        subtitle: Text(" Gönderi Açıklaması "),
-                        trailing: FaIcon(FontAwesomeIcons.edit),
-                      );
-                    },
-                  ),
-                ),//Gönderilerin görüntülendiği Container
-                SizedBox(width: 50,),
-                Container(
-                  width: MediaQuery.of(context).size.width*0.3,
-                  height: MediaQuery.of(context).size.height*0.53,
-                  margin: EdgeInsets.symmetric(vertical: 20),
-                  color: Colors.white12,
-                  child: ListView(
-                    // VideoId-VideoBaşlığı-VideoAçıklaması-VideoResimLinki
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _videoIdController,
-                          cursorColor: Colors.black,
-                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,fontSize: 16),
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: "Video ID",
-                            labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
-                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.blueAccent)),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _videoName,
-                          cursorColor: Colors.black,
-                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,fontSize: 16),
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: "Video Başlığı",
-                            labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
-                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.blueAccent)),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _videoDesc,
-                          cursorColor: Colors.black,
-                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,fontSize: 16),
-                          obscureText: false,
-                          maxLines: 5,
-                          decoration: InputDecoration(
-                            labelText: "Video Açıklaması",
-                            labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
-                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.blueAccent)),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: TextField(
-                          controller: _videoImageLink,
-                          cursorColor: Colors.black,
-                          style: TextStyle(color: Colors.white,fontWeight: FontWeight.w600,fontSize: 16),
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: "Video Görsel Linki",
-                            labelStyle: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
-                            focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.blueAccent)),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: ButtonBar(
-                          children: [
-                            FlatButton.icon(
-                              onPressed: (){},
-                              icon: FaIcon(FontAwesomeIcons.save),
-                              label: Text(" Kaydet "),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
-                              color: Color(0xff333951),
-                              textColor: Colors.amber,
-                              height: 40,
-                            ),
-                            FlatButton.icon(
-                              onPressed: (){},
-                              icon: FaIcon(FontAwesomeIcons.bullhorn),
-                              label: Text(" Paylaş "),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
-                              color: Color(0xff333951),
-                              textColor: Colors.amber,
-                              height: 40,
-                            ),
-                            FlatButton.icon(
-                              onPressed: (){},
-                              icon: FaIcon(FontAwesomeIcons.trashAlt),
-                              label: Text(" Sil "),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
-                              color: Color(0xff333951),
-                              textColor: Colors.amber,
-                              height: 40,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),//Gönderi detaylarının görüntülendiği Container
-
-              ],
-            ),//Gödneri görüntüleme containeri
-            SizedBox(height: 20),
-          ],
-        )
-    );*/
   }
 }
