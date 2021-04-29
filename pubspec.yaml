@@ -25,6 +25,8 @@ dependencies:
   collapsible_sidebar: ^1.0.7+2
   font_awesome_flutter: ^9.0.0
   fluro: ^2.0.3
+  http: ^0.12.2
+  fluttertoast: ^7.1.6
 
   flutter:
     sdk: flutter

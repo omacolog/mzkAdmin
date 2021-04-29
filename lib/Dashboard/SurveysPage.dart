@@ -326,7 +326,7 @@ class _SurveysPageState extends State<SurveysPage> {
                                   child: ListView.builder(
                                     padding: EdgeInsets.all(5),
                                     scrollDirection: Axis.vertical,
-                                    itemCount: 5,
+                                    itemCount: 5 ,
                                     itemBuilder: (context,int i){
                                       return Card(
                                         shape: RoundedRectangleBorder(

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mzkadmin/Defaults/UsedColors.dart';
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast_web.dart';
 
 class YoutubePage extends StatefulWidget {
   @override
@@ -11,6 +14,49 @@ class YoutubePage extends StatefulWidget {
 
 class _YoutubePageState extends State<YoutubePage> {
   @override
+
+  ///#region Server'a Videoyu Kaydetme
+  Future<bool> postYoutubeVideo(String videoId,String videoName,String videoDesc,String videoImageLink) async {
+    final String apiUrl = "http://mzk3-env-2.eba-megayjp2.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
+
+    final response = await http.post(apiUrl, body: {
+      "videoId":  videoId,
+      "videoTitle": videoName,
+      "videoText":  videoDesc,
+      "videoImageLink": videoImageLink,
+    });
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final String responseString = response.body;
+
+      Fluttertoast.showToast(
+          msg: "Video başarıyla eklendi.",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.SNACKBAR,
+          backgroundColor: Color(0xffDAA520),
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      //Sayfa temizlenecek!!
+
+      return true;
+    }
+
+    else
+    {
+      debugPrint(response.statusCode.toString());
+      Fluttertoast.showToast(
+          msg: "İşlem başarısız oldu.",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.SNACKBAR,
+          backgroundColor: Color(0xffDAA520),
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      return false;
+    }
+  }
+  ///#endregion
+
 
 
   void initState() {
@@ -230,7 +276,13 @@ class _YoutubePageState extends State<YoutubePage> {
                                 ),//Fotoğraf Linki
                                 Padding(padding: EdgeInsets.all(20),
                                   child: FlatButton.icon(
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      postYoutubeVideo(_videoIdController.text,_videoName.text,_videoDesc.text,_videoImageLink.text);
+                                      _videoIdController.clear();
+                                      _videoName.clear();
+                                      _videoDesc.clear();
+                                      _videoImageLink.clear();
+                                    },
                                     icon: FaIcon(FontAwesomeIcons.paperPlane,size: 20,),
                                     label: Text(" Gönderiyi Paylaş "),
                                     color: Renk_Blackish,
@@ -266,7 +318,7 @@ class _YoutubePageState extends State<YoutubePage> {
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 20),
                                   child: TextField(
-                                    controller: _videoIdControllerEdit,
+                                    controller: _videoIdController,
                                     cursorColor: Colors.black,
                                     style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500,fontSize: 16),
                                     obscureText: false,
