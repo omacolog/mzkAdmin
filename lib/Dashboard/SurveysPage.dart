@@ -15,10 +15,20 @@ class _SurveysPageState extends State<SurveysPage> {
     super.initState();
   }
 
+  ///#region Seçenekleri Gösterme
+  void secenekleriGoster(){
+    setState(() {
+      optionNumber=int.parse(_anketSecenekSayisiController.text);
+    });
+  }
+
+  ///#endregion
+
   static TextEditingController _anketBasligiController = TextEditingController();
   static TextEditingController _anketSorusuController = TextEditingController();
   static TextEditingController _anketFotografLinkController = TextEditingController();
   static TextEditingController _anketSecenekSayisiController = TextEditingController();
+  int optionNumber=1;
 
 
   Widget build(BuildContext context) {
@@ -45,13 +55,6 @@ class _SurveysPageState extends State<SurveysPage> {
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                             title: Text("${i+1}. Anket Başlığı ",style: TextStyle(fontWeight: FontWeight.bold),),
                             subtitle: Text(" Anket Açıklaması "),
-                            trailing: IconButton(
-                              icon: FaIcon(FontAwesomeIcons.edit),
-                              iconSize: 20,
-                              color: Renk_Blackish,
-                              hoverColor: Colors.white54,
-                              onPressed: (){},
-                            ),
                             hoverColor: Colors.white30,
                             //trailing: FaIcon(FontAwesomeIcons.edit,size: 20,color: ),
                           );
@@ -143,7 +146,9 @@ class _SurveysPageState extends State<SurveysPage> {
                                     ),
                                   ),//Anket Fotoğrafı
                                   Padding(padding: EdgeInsets.all(15),child: FlatButton.icon(
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      secenekleriGoster();
+                                    },
                                     icon: FaIcon(FontAwesomeIcons.eye),
                                     label: Text("Seçenekleri Göster"),
                                     textColor: Renk_EggYellow,
@@ -159,8 +164,8 @@ class _SurveysPageState extends State<SurveysPage> {
                                 ],
                               ),
                             ),
-                          ),),
-                          Container(height: 5,width: MediaQuery.of(context).size.width,color: Colors.white10,),
+                          ),),//Anket İçeriği Görüntülernir
+                          Container(height: 2,width: MediaQuery.of(context).size.width,color: Colors.white10,),
                           Flexible(flex: 1,child: SingleChildScrollView(
                             child: Container(
                               width: MediaQuery.of(context).size.width,
@@ -181,7 +186,7 @@ class _SurveysPageState extends State<SurveysPage> {
                                     },
                                   ),
                             ),
-                          ),),
+                          ),),//Anketin Seçenekleri Görüntülernir
                         ],
                       ),
                     ),
@@ -291,7 +296,9 @@ class _SurveysPageState extends State<SurveysPage> {
                                   ),//Anket Fotoğraf Linki
                                   SizedBox(height: 5,),
                                   FlatButton.icon(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      secenekleriGoster();
+                                    },
                                     icon: FaIcon(FontAwesomeIcons.plusSquare,color: Renk_EggYellow,),
                                     label: Text("Seçenekleri Oluştur"),
                                     textColor: Renk_EggYellow,
@@ -309,24 +316,24 @@ class _SurveysPageState extends State<SurveysPage> {
                               ),
                             ),
                           ),),
-                          Container(height: 5,width: MediaQuery.of(context).size.width,color: Renk_Blackish,),
+                          Container(height: 2,width: MediaQuery.of(context).size.width,color: Renk_EggYellow,),
                           Flexible(flex: 1,child: SingleChildScrollView(
                             child: Column(
                               children: [
-                                Padding(
+                                /*Padding(
                                   child: Text(
                                     "Seçenekler",
                                     style: TextStyle(color: Renk_Blackish,fontSize: 30,fontWeight: FontWeight.bold),
                                   ),
                                   padding: EdgeInsets.all(5),
-                                ),//Container Başlığı
+                                ),*///Container Başlığı
                                 Container(
                                   width: MediaQuery.of(context).size.width,
-                                  height: MediaQuery.of(context).size.height*(0.3),
+                                  height: MediaQuery.of(context).size.height*(0.35),
                                   child: ListView.builder(
                                     padding: EdgeInsets.all(5),
                                     scrollDirection: Axis.vertical,
-                                    itemCount: 5 ,
+                                    itemCount: optionNumber ,
                                     itemBuilder: (context,int i){
                                       return Card(
                                         shape: RoundedRectangleBorder(
@@ -334,7 +341,7 @@ class _SurveysPageState extends State<SurveysPage> {
                                         ),
                                         color: Renk_EggYellow,
                                         child: Padding(
-                                          padding: EdgeInsets.symmetric(horizontal: 10),
+                                          padding: EdgeInsets.symmetric(horizontal: 1),
                                           child: TextField(
                                             controller: _anketBasligiController,
                                             cursorColor: Colors.black,
@@ -361,7 +368,7 @@ class _SurveysPageState extends State<SurveysPage> {
                                   child:FlatButton.icon(
                                     onPressed: (){},
                                     icon: FaIcon(FontAwesomeIcons.plusSquare,color: Renk_EggYellow,),
-                                    label: Text("Seçenekleri Oluştur"),
+                                    label: Text("Anketi Oluştur"),
                                     textColor: Renk_EggYellow,
                                     color: Renk_Blackish,
                                     hoverColor: Colors.white30,

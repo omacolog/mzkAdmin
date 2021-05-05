@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mzkadmin/Defaults/UsedColors.dart';
 
@@ -12,10 +13,16 @@ class _HomePageState extends State<HomePage> {
     return Container(
       color: Renk_EggYellow,
       child: Center(
-        child: Text(
-          "Anasayfa Yapım Aşamasında",
-          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),
-        ),
+        child: Column(
+          children: [
+            Padding(padding: EdgeInsets.all(15),
+              child:Text("Anasayfa Yapım Aşamasında", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30),),),
+            Padding(padding: EdgeInsets.all(15),
+              child: Text("Bu Sayfada Yapılacak İşlemler",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),),
+
+
+          ],
+        )
       ),
     );
   }
