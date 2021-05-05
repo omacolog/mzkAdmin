@@ -9,7 +9,6 @@ import 'package:mzkadmin/Dashboard/ErrorPage.dart';
 import 'package:mzkadmin/Defaults/UsedColors.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fluttertoast/fluttertoast_web.dart';
 import 'package:mzkadmin/Json/Videos.dart';
 
 class YoutubePage extends StatefulWidget {
@@ -20,11 +19,13 @@ class YoutubePage extends StatefulWidget {
 class _YoutubePageState extends State<YoutubePage> {
   @override
 
+  void initState() {super.initState();}
+
   ///#region Server'a Videoyu Kaydetme
   Future<bool> postYoutubeVideo(String videoId, String videoName,
       String videoDesc, String videoImageLink) async {
     final String apiUrl =
-        "http://mzk3-env-2.eba-megayjp2.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
+        "http://mzktv5-env.eba-v9fqs3e2.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
 
     final response = await http.post(apiUrl, body: {
       "videoId": videoId,
@@ -47,7 +48,6 @@ class _YoutubePageState extends State<YoutubePage> {
 
       return true;
     } else {
-      debugPrint(response.statusCode.toString());
       Fluttertoast.showToast(
           msg: "İşlem başarısız oldu.",
           toastLength: Toast.LENGTH_LONG,
@@ -65,7 +65,7 @@ class _YoutubePageState extends State<YoutubePage> {
   ///#region API'den video listesi alınır.
   Future<List<VideosData>> _fetchVideoList() async {
     final videoListAPIUrl =
-        "http://mzk3-env-2.eba-megayjp2.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
+        "http://mzktv5-env.eba-v9fqs3e2.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
     final response =
         await http.get(videoListAPIUrl, headers: <String, String>{});
 
@@ -80,8 +80,8 @@ class _YoutubePageState extends State<YoutubePage> {
 
   ///#region  Videoyu Serverdan Kaldırma
   Future<bool> deleteYoutubeVideo(String videoId,int Id) async {
-    final String apiUrl = "http://mzk3-env-2.eba-megayjp2.eu-central-1.elasticbeanstalk.com/api/admin/op/video/$Id";
-    debugPrint(apiUrl);
+    final String apiUrl = "http://mzktv5-env.eba-v9fqs3e2.eu-central-1.elasticbeanstalk.com/api/admin/op/video/$Id";
+
     final response = await http.delete(apiUrl,headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },);
@@ -102,7 +102,7 @@ class _YoutubePageState extends State<YoutubePage> {
 
     else
     {
-      debugPrint(response.statusCode.toString());
+
       Fluttertoast.showToast(
           msg: "İşVideo silme başarısız oldu.",
           toastLength: Toast.LENGTH_LONG,
@@ -137,11 +137,7 @@ class _YoutubePageState extends State<YoutubePage> {
 
   ///#endregion
 
-
-  void initState() {
-    super.initState();
-  }
-
+  ///#region TextController ve Text Değişkenleri
   String viewVideoId="",viewVideoTitle="",viewVideoImageLink="",viewVideoDesc="";
   int viewId=0;
   static TextEditingController _videoIdController = TextEditingController();
@@ -153,6 +149,8 @@ class _YoutubePageState extends State<YoutubePage> {
   static TextEditingController _videoNameEdit = TextEditingController();
   static TextEditingController _videoDescEdit = TextEditingController();
   static TextEditingController _videoImageLinkEdit = TextEditingController();
+  ///#endregion
+
 
   Widget build(BuildContext context) {
     return FutureBuilder<List<VideosData>>(
@@ -160,7 +158,6 @@ class _YoutubePageState extends State<YoutubePage> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<VideosData> youtubeVideoList = snapshot.data;
-            debugPrint(youtubeVideoList[0].id.toString());
             return Scaffold(
               backgroundColor: Renk_EggYellow,
               body: SingleChildScrollView(
@@ -274,10 +271,10 @@ class _YoutubePageState extends State<YoutubePage> {
                                                   decoration: BoxDecoration(
                                                     image: DecorationImage(
                                                       image: imageProvider,
-                                                      fit: BoxFit.cover,
+                                                      fit: BoxFit.fitHeight,
                                                     ),
                                                   ),
-                                                  height: 220,
+                                                  height: 300,
                                                 ),
                                             placeholder: (context, url) =>
                                                 Padding(
@@ -703,9 +700,7 @@ class _YoutubePageState extends State<YoutubePage> {
                                               Padding(
                                                   padding: EdgeInsets.all(20),
                                                   child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                     children: [
                                                       FlatButton.icon(
                                                         onPressed: () {},
@@ -735,6 +730,10 @@ class _YoutubePageState extends State<YoutubePage> {
                                                       FlatButton.icon(
                                                         onPressed: () {
                                                           deleteYoutubeVideo(_videoIdControllerEdit.text,viewId);
+                                                          _videoIdControllerEdit.clear();
+                                                          _videoNameEdit.clear();
+                                                          _videoImageLinkEdit.clear();
+                                                          _videoDescEdit.clear();
                                                         },
                                                         icon: FaIcon(
                                                           FontAwesomeIcons
@@ -780,7 +779,6 @@ class _YoutubePageState extends State<YoutubePage> {
           } else if (snapshot.hasError) {
             return ErrorPage();
           }
-
           ///#region Veriler yüklenirken gösterilecek ekran
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -798,6 +796,7 @@ class _YoutubePageState extends State<YoutubePage> {
           );
 
           ///#endregion
-        });
+        }
+        );
   }
 }
