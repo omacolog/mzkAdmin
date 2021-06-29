@@ -18,9 +18,14 @@ class LandingPage extends StatefulWidget {
   _LandingPageState createState() => _LandingPageState();
 }
 
-List<String>pages = ['home', 'youtube', 'news', 'surveys', 'settings',];
+List<String>pages = ['home', 'youtube', 'news', 'surveys',];
 
-List<IconData> icons = [FontAwesomeIcons.home, FontAwesomeIcons.youtube, FontAwesomeIcons.newspaper, FontAwesomeIcons.pollH, FontAwesomeIcons.cogs,];
+List<IconData> icons = [
+  FontAwesomeIcons.home,
+  FontAwesomeIcons.youtube,
+  FontAwesomeIcons.newspaper,
+  FontAwesomeIcons.pollH,
+];
 
 class _LandingPageState extends State<LandingPage> {
   @override
@@ -55,7 +60,6 @@ class _LandingPageState extends State<LandingPage> {
                   YoutubePage(),
                   NewsPage(),
                   SurveysPage(),
-                  SettingsPage(),
                 ],
               ),
             ),//Dashboard

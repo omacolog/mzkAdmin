@@ -25,7 +25,7 @@ class _YoutubePageState extends State<YoutubePage> {
   Future<bool> postYoutubeVideo(String videoId, String videoName,
       String videoDesc, String videoImageLink) async {
     final String apiUrl =
-        "http://mzktv5-env.eba-v9fqs3e2.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
+        "http://mzkappv1-env.eba-i5znycbm.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
 
     final response = await http.post(apiUrl, body: {
       "videoId": videoId,
@@ -59,13 +59,12 @@ class _YoutubePageState extends State<YoutubePage> {
       return false;
     }
   }
-
   ///#endregion
 
   ///#region API'den video listesi alınır.
   Future<List<VideosData>> _fetchVideoList() async {
     final videoListAPIUrl =
-        "http://mzktv5-env.eba-v9fqs3e2.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
+        "http://mzkappv1-env.eba-i5znycbm.eu-central-1.elasticbeanstalk.com/api/admin/op/videos";
     final response =
         await http.get(videoListAPIUrl, headers: <String, String>{});
 
@@ -78,9 +77,49 @@ class _YoutubePageState extends State<YoutubePage> {
 
   ///#endregion
 
+  ///region videoyu Güncelle
+  Future<bool> updateVideo(String videoId, String videoName, String videoDesc,String videoImageLink,int Id) async {
+    final String apiUrl = "http://mzkappv1-env.eba-i5znycbm.eu-central-1.elasticbeanstalk.com/api/admin/op/videos/$Id";
+
+    final response = await http.put(apiUrl, body: {
+      "videoId": videoId,
+      "videoTitle": videoName,
+      "videoText": videoDesc,
+      "videoImageLink": videoImageLink,
+    });
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final String responseString = response.body;
+
+      Fluttertoast.showToast(
+          msg: "Gönderi başarıyla güncellendi.",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.SNACKBAR,
+          backgroundColor: Color(0xffDAA520),
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      //Sayfa temizlenecek!!
+
+      return true;
+    } else {
+
+      Fluttertoast.showToast(
+          msg: "Gönderi güncelleme başarısız oldu.",
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.SNACKBAR,
+          backgroundColor: Color(0xffDAA520),
+          textColor: Colors.white,
+          fontSize: 16.0);
+
+      return false;
+    }
+  }
+
+  ///endregion
+
   ///#region  Videoyu Serverdan Kaldırma
   Future<bool> deleteYoutubeVideo(String videoId,int Id) async {
-    final String apiUrl = "http://mzktv5-env.eba-v9fqs3e2.eu-central-1.elasticbeanstalk.com/api/admin/op/video/$Id";
+    final String apiUrl = "http://mzkappv1-env.eba-i5znycbm.eu-central-1.elasticbeanstalk.com/api/admin/op/video/$Id";
 
     final response = await http.delete(apiUrl,headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
@@ -316,16 +355,11 @@ class _YoutubePageState extends State<YoutubePage> {
                             width: 5,
                             height: MediaQuery.of(context).size.height,
                           ),
-                          Flexible(
-                            flex: 4,
-                            child: Container(
+                          Flexible(flex: 4, child: Container(
                               width: MediaQuery.of(context).size.width,
                               height: MediaQuery.of(context).size.height,
-                              child: Column(
-                                children: [
-                                  Flexible(
-                                      flex: 1,
-                                      child: Container(
+                              child: Column(children: [
+                                  Flexible(flex: 1, child: Container(
                                         width:
                                             MediaQuery.of(context).size.width,
                                         height:
@@ -530,13 +564,9 @@ class _YoutubePageState extends State<YoutubePage> {
                                     width: MediaQuery.of(context).size.width,
                                     color: Renk_Blackish,
                                   ),
-                                  Flexible(
-                                      flex: 1,
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        height:
-                                            MediaQuery.of(context).size.height,
+                                  Flexible(flex: 1, child: Container(
+                                        width: MediaQuery.of(context).size.width,
+                                        height: MediaQuery.of(context).size.height,
                                         color: Renk_EggYellow,
                                         child: SingleChildScrollView(
                                           child: Column(
@@ -664,35 +694,21 @@ class _YoutubePageState extends State<YoutubePage> {
                                                 height: 5,
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 20),
+                                                padding: EdgeInsets.symmetric(horizontal: 20),
                                                 child: TextField(
-                                                  controller:
-                                                      _videoImageLinkEdit,
+                                                  controller: _videoImageLinkEdit,
                                                   cursorColor: Colors.black,
-                                                  style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 16),
+                                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500,fontSize: 16),
                                                   obscureText: false,
                                                   decoration: InputDecoration(
-                                                    labelText:
-                                                        "Video Fotoğraf Linki : ",
-                                                    labelStyle: TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        fontSize: 18),
+                                                    labelText: "Video Fotoğraf Linki : ",
+                                                    labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w700, fontSize: 18),
                                                     filled: true,
                                                     fillColor: Colors.white12,
                                                     hoverColor: Colors.white30,
                                                     border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5),
-                                                      borderSide: BorderSide(
-                                                          color: Colors.black),
+                                                      borderRadius: BorderRadius.circular(5),
+                                                      borderSide: BorderSide(color: Colors.black),
                                                     ),
                                                   ),
                                                 ),
@@ -703,30 +719,27 @@ class _YoutubePageState extends State<YoutubePage> {
                                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                     children: [
                                                       FlatButton.icon(
-                                                        onPressed: () {},
-                                                        icon: FaIcon(
-                                                          FontAwesomeIcons.save,
-                                                          size: 20,
-                                                        ),
-                                                        label: Text(
-                                                            " Gönderiyi Düzenle ve Kaydet  "),
+                                                        onPressed: () {
+                                                          updateVideo(
+                                                              _videoIdControllerEdit.text,
+                                                              _videoNameEdit.text,
+                                                              _videoDescEdit.text,
+                                                              _videoImageLinkEdit.text,
+                                                              viewId);
+                                                          _videoIdControllerEdit.clear();
+                                                          _videoNameEdit.clear();
+                                                          _videoImageLinkEdit.clear();
+                                                          _videoDescEdit.clear();
+                                                        },
+                                                        icon: FaIcon(FontAwesomeIcons.save, size: 20,),
+                                                        label: Text(" Gönderiyi Düzenle ve Kaydet  "),
                                                         color: Renk_Blackish,
-                                                        hoverColor:
-                                                            Colors.white12,
-                                                        textColor:
-                                                            Renk_EggYellow,
-                                                        padding:
-                                                            EdgeInsets.all(15),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          side: BorderSide(
-                                                              color:
-                                                                  Renk_Blackish),
-                                                        ),
-                                                      ), //Haberi Düzenle Butonu
+                                                        hoverColor: Colors.white12,
+                                                        textColor: Renk_EggYellow,
+                                                        padding: EdgeInsets.all(15),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(5),
+                                                          side: BorderSide(color: Renk_Blackish),),), //Haberi Düzenle Butonu
                                                       FlatButton.icon(
                                                         onPressed: () {
                                                           deleteYoutubeVideo(_videoIdControllerEdit.text,viewId);
@@ -735,40 +748,25 @@ class _YoutubePageState extends State<YoutubePage> {
                                                           _videoImageLinkEdit.clear();
                                                           _videoDescEdit.clear();
                                                         },
-                                                        icon: FaIcon(
-                                                          FontAwesomeIcons
-                                                              .trashAlt,
-                                                          size: 20,
-                                                        ),
-                                                        label: Text(
-                                                            " Gönderiyi Kaldır "),
+                                                        icon: FaIcon(FontAwesomeIcons.trashAlt, size: 20,),
+                                                        label: Text(" Gönderiyi Kaldır "),
                                                         color: Renk_Blackish,
-                                                        hoverColor:
-                                                            Colors.white12,
-                                                        textColor:
-                                                            Renk_EggYellow,
-                                                        padding:
-                                                            EdgeInsets.all(15),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          side: BorderSide(
-                                                              color:
-                                                                  Renk_Blackish),
+                                                        hoverColor: Colors.white12,
+                                                        textColor: Renk_EggYellow,
+                                                        padding: EdgeInsets.all(15),
+                                                        shape: RoundedRectangleBorder(
+                                                          borderRadius: BorderRadius.circular(5),
+                                                          side: BorderSide(color: Renk_Blackish),
                                                         ),
-                                                      ),
+                                                      ), //Haberi Sil Butonu
                                                     ],
                                                   )), //Kaydet ve Sil Butonları
                                             ],
                                           ),
                                         ),
                                       )), //Gönderi Düzenleme
-                                ],
-                              ),
-                            ),
-                          ), //Gönderi Oluştur ve Gönderi Düzenle
+                                ],),
+                            ),), //Gönderi Oluştur ve Gönderi Düzenle
                         ],
                       )
                     ],

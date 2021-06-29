@@ -27,25 +27,43 @@ class News {
   DateTime updatedAt;
   List<Comment> comment;
 
-  factory News.fromJson(Map<String, dynamic> json) => News(
-    id: json["ID"] == null ? null : json["ID"],
-    newsTitle: json["newsTitle"] == null ? null : json["newsTitle"],
-    newsText: json["newsText"] == null ? null : json["newsText"],
-    newsImageLink: json["newsImageLink"] == null ? null : json["newsImageLink"],
-    createdAt: json["CreatedAt"] == null ? null : DateTime.parse(json["CreatedAt"]),
-    updatedAt: json["UpdatedAt"] == null ? null : DateTime.parse(json["UpdatedAt"]),
-    comment: json["comment"] == null ? null : List<Comment>.from(json["comment"].map((x) => Comment.fromJson(x))),
-  );
+  factory News.fromJson(Map<String, dynamic> json) {
+    return json != null
+        ? News(
+            id: json["ID"] == null ? null : json["ID"],
+            newsTitle: json["newsTitle"] == null ? null : json["newsTitle"],
+            newsText: json["newsText"] == null ? null : json["newsText"],
+            newsImageLink:
+                json["newsImageLink"] == null ? null : json["newsImageLink"],
+            createdAt: json["CreatedAt"] == null
+                ? null
+                : DateTime.parse(json["CreatedAt"]),
+            updatedAt: json["UpdatedAt"] == null
+                ? null
+                : DateTime.parse(json["UpdatedAt"]),
+            comment: json["comment"] == null
+                ? null
+                : List<Comment>.from(
+                    json["comment"].map((x) => Comment.fromJson(x))),
+          )
+        : null;
+  }
 
   Map<String, dynamic> toJson() => {
-    "ID": id == null ? null : id,
-    "newsTitle": newsTitle == null ? null : newsTitle,
-    "newsText": newsText == null ? null : newsText,
-    "newsImageLink": newsImageLink == null ? null : newsImageLink,
-    "CreatedAt": createdAt == null ? null : "${createdAt.year.toString().padLeft(4, '0')}-${createdAt.month.toString().padLeft(2, '0')}-${createdAt.day.toString().padLeft(2, '0')}",
-    "UpdatedAt": updatedAt == null ? null : "${updatedAt.year.toString().padLeft(4, '0')}-${updatedAt.month.toString().padLeft(2, '0')}-${updatedAt.day.toString().padLeft(2, '0')}",
-    "comment": comment == null ? null : List<dynamic>.from(comment.map((x) => x.toJson())),
-  };
+        "ID": this.id == null ? null : this.id,
+        "newsTitle": this.newsTitle == null ? null : this.newsTitle,
+        "newsText": this.newsText == null ? null : this.newsText,
+        "newsImageLink": this.newsImageLink == null ? null : this.newsImageLink,
+        "CreatedAt": this.createdAt == null
+            ? null
+            : "${this.createdAt.year.toString().padLeft(4, '0')}-${this.createdAt.month.toString().padLeft(2, '0')}-${this.createdAt.day.toString().padLeft(2, '0')}",
+        "UpdatedAt": this.updatedAt == null
+            ? null
+            : "${this.updatedAt.year.toString().padLeft(4, '0')}-${this.updatedAt.month.toString().padLeft(2, '0')}-${this.updatedAt.day.toString().padLeft(2, '0')}",
+        "comment": this.comment == null
+            ? null
+            : List<dynamic>.from(this.comment.map((x) => x.toJson())),
+      };
 }
 
 class Comment {
@@ -65,21 +83,27 @@ class Comment {
   String commentText;
   int commentStatus;
 
-  factory Comment.fromJson(Map<String, dynamic> json) => Comment(
-    id: json["ID"] == null ? null : json["ID"],
-    newsId: json["NewsID"] == null ? null : json["NewsID"],
-    userId: json["UserID"] == null ? null : json["UserID"],
-    userName: json["UserName"] == null ? null : json["UserName"],
-    commentText: json["CommentText"] == null ? null : json["CommentText"],
-    commentStatus: json["CommentStatus"] == null ? null : json["CommentStatus"],
-  );
+  factory Comment.fromJson(Map<String, dynamic> json) {
+    return json != null
+        ? Comment(
+            id: json["ID"] == null ? null : json["ID"],
+            newsId: json["NewsID"] == null ? null : json["NewsID"],
+            userId: json["UserID"] == null ? null : json["UserID"],
+            userName: json["UserName"] == null ? null : json["UserName"],
+            commentText:
+                json["CommentText"] == null ? null : json["CommentText"],
+            commentStatus:
+                json["CommentStatus"] == null ? null : json["CommentStatus"],
+          )
+        : null;
+  }
 
   Map<String, dynamic> toJson() => {
-    "ID": id == null ? null : id,
-    "NewsID": newsId == null ? null : newsId,
-    "UserID": userId == null ? null : userId,
-    "UserName": userName == null ? null : userName,
-    "CommentText": commentText == null ? null : commentText,
-    "CommentStatus": commentStatus == null ? null : commentStatus,
-  };
+        "ID": this.id == null ? null : this.id,
+        "NewsID": this.newsId == null ? null : this.newsId,
+        "UserID": this.userId == null ? null : this.userId,
+        "UserName": this.userName == null ? null : this.userName,
+        "CommentText": this.commentText == null ? null : this.commentText,
+        "CommentStatus": this.commentStatus == null ? null : this.commentStatus,
+      };
 }
